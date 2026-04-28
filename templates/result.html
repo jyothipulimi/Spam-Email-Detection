@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Result</title>
+<style>
+body{
+    font-family:"Times New Roman", serif;
+    /* BACKGROUND IMAGE */
+    background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;       /* cover full screen */
+    background-position: center;  /* center image */
+    background-repeat: no-repeat;
+    text-align:center;
+    padding:50px 20px;
+    color:#333;
+}
+
+/* Glass-like box to keep content readable */
+.box{
+    background: rgba(255,255,255,0.85); /* semi-transparent white */
+    padding:40px 35px;
+    border-radius:20px;
+    display:inline-block;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    max-width:650px;
+    width:90%;
+}
+
+h1{
+    color:#1a237e;
+    margin-bottom:25px;
+    text-shadow:1px 1px 5px rgba(0,0,0,0.05);
+}
+
+h2{
+    margin:20px 0;
+    color:#0277bd;
+}
+
+p{
+    font-size:16px;
+    margin:12px 0;
+}
+
+/* ===== RESULT / CONFIDENCE BOX ===== */
+.result-box{
+    background:#e1f5fe;
+    padding:25px;
+    border-radius:15px;
+    margin-top:20px;
+    font-weight:bold;
+    color:#0277bd;
+    text-align:center;
+}
+
+.confidence{
+    margin-top:8px;
+    color:#d84315;
+    font-weight:bold;
+    font-size:16px;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+    margin:15px 10px;
+    padding:15px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+
+.try-btn{ background:#0288d1; color:white; }
+.home-btn{ background:#4db6ac; color:white; }
+.logout-btn{ background:#e53935; color:white; }
+
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h1>📊 AI Email Verdict</h1>
+
+    <div class="result-box">
+        <h2>Result: <b>{{ prediction }}</b></h2>
+        
+        <!-- Confidence Percentages -->
+        {% if confidence %}
+        <p class="confidence">Overall Confidence: <b>{{ confidence }}%</b></p>
+        {% endif %}
+        {% if spam_prob %}
+        <p class="confidence">Spam Probability: <b>{{ spam_prob }}%</b></p>
+        {% endif %}
+        {% if ham_prob %}
+        <p class="confidence">Ham Probability: <b>{{ ham_prob }}%</b></p>
+        {% endif %}
+
+    </div>
+
+    <!-- Large Buttons -->
+    <div style="margin-top:20px;">
+        <button class="btn try-btn" onclick="location.href='{{ url_for('detect') }}'">🔄 Try Another Email</button>
+        <button class="btn home-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Home</button>
+        <button class="btn logout-btn" onclick="location.href='{{ url_for('logout') }}'">🚪 Logout</button>
+    </div>
+</div>
+
+{% include 'chatbot.html' %}
+</body>
+</html>

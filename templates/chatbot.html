@@ -1,0 +1,276 @@
+<!-- =============== SPARKY CHATBOT =============== -->
+<style>
+.chatbot{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+    font-family:Arial, sans-serif;
+}
+
+/* IMAGE BUTTON */
+.chat-btn{
+    width:55px;
+    height:55px;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(0,0,0,0.4);
+}
+
+.chat-btn img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CHAT BOX */
+.chat-box{
+    display:none;              /* 👈 START CLOSED */
+    width:260px;
+    height:320px;
+    margin-bottom:10px;
+    background:rgba(0,0,0,0.9);
+    border-radius:12px;
+    padding:8px;
+    color:white;
+    flex-direction:column;
+}
+
+/* HEADER */
+.chat-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.chat-avatar{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+}
+
+/* MESSAGES */
+.chat-messages{
+    flex:1;
+    overflow-y:auto;
+    margin-bottom:6px;
+}
+
+.msg{
+    margin:4px 0;
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:13px;
+}
+
+.user{ background:#4CAF50; align-self:flex-end; }
+.bot{ background:#333; align-self:flex-start; }
+
+/* INPUT */
+#chatInput{
+    width:100%;
+    padding:6px;
+    border-radius:6px;
+    border:none;
+    outline:none;
+}
+</style>
+
+<div class="chatbot">
+
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <img src="{{ url_for('static', filename='sparky.png') }}" class="chat-avatar">
+            Sparky Bot
+        </div>
+
+        <div class="chat-messages" id="chatMessages"></div>
+
+        <input type="text" id="chatInput"
+               placeholder="Type here..."
+               onkeypress="if(event.key==='Enter'){sendMessage()}">
+    </div>
+
+    <!-- IMAGE CLICK -->
+    <button class="chat-btn" onclick="toggleChat()">
+        <img src="{{ url_for('static', filename='sparky.png') }}">
+    </button>
+
+</div>
+
+<script>
+let greeted = false;
+
+/* OPEN / CLOSE */
+function toggleChat(){
+    let box = document.getElementById("chatBox");
+
+    if(box.style.display === "flex"){
+        box.style.display = "none";
+    }else{
+        box.style.display = "flex";
+
+        /* GREETING ONLY FIRST TIME */
+        if(!greeted){
+            showTyping();
+            setTimeout(()=>{
+                removeTyping();
+                addMsg("Hello 👋 How can I assist you today?", "bot");
+            },1200);
+            greeted = true;
+        }
+    }
+}
+
+/* SEND MESSAGE */
+function sendMessage(){
+    let input = document.getElementById("chatInput");
+    let text = input.value.trim();
+    if(text === "") return;
+
+    addMsg(text,"user");
+    input.value = "";
+
+    showTyping();
+    setTimeout(()=>{
+        removeTyping();
+        addMsg(reply(text),"bot");
+    },1000);
+}
+
+/* ADD MESSAGE */
+function addMsg(text,type){
+    let div = document.createElement("div");
+    div.className = "msg " + type;
+    div.innerText = text;
+    let box = document.getElementById("chatMessages");
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+}
+
+/* TYPING EFFECT */
+function showTyping(){
+    let box = document.getElementById("chatMessages");
+    let div = document.createElement("div");
+    div.className = "msg bot";
+    div.id = "typing";
+    div.innerText = "Sparky is typing...";
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping(){
+    let t = document.getElementById("typing");
+    if(t) t.remove();
+}
+
+/* BOT REPLIES */
+function reply(msg){
+    msg = msg.toLowerCase();
+
+    /* ========== BASIC GREETINGS ========== */
+    if(msg.split(" ").includes("hi") || msg.split(" ").includes("hello"))
+        return "Hello 👋 I am Sparky Bot. How can I assist you with Spam Email Detection?";
+
+    if(msg.split(" ").includes("ok") || msg.split(" ").includes("okay"))
+        return "Okay 👍 Feel free to ask more about spam detection.";
+
+    if(msg.includes("thank"))
+        return "You're welcome 😊 Happy to help you!";
+
+    /* ========== SPAM / HAM BASICS ========== */
+    if(msg.includes("spam vs ham"))
+    return "Spam emails are suspicious or unwanted, while Ham emails are genuine and safe.";
+
+    if(msg.split(" ").includes("what is spam") || msg.split(" ").includes("spam"))
+        return "Spam emails are unwanted or malicious emails sent in bulk, often containing ads, scams, or phishing links.";
+
+    if(msg.split(" ").includes("what is ham") || msg.split(" ").includes("ham"))
+        return "Ham emails are legitimate, safe emails such as personal, business, or official messages.";
+
+    /* ========== NLP RELATED QUESTIONS ========== */
+    if(msg.includes("nlp"))
+        return "NLP (Natural Language Processing) helps computers understand, clean, and analyze human language in emails.";
+
+    if(msg.includes("preprocessing"))
+        return "Text preprocessing includes tokenization, lowercasing, stopword removal, and stemming.";
+
+    if(msg.includes("token"))
+        return "Tokenization breaks email text into individual words or tokens for analysis.";
+
+    if(msg.includes("stopword"))
+        return "Stopwords like 'is', 'the', 'and' are removed because they don't add meaning for classification.";
+
+    if(msg.includes("stemming") || msg.includes("lemmatization"))
+        return "Stemming or lemmatization reduces words to their root form, such as 'winning' to 'win'.";
+
+    /* ========== FEATURE EXTRACTION ========== */
+    if(msg.includes("feature") || msg.includes("vector"))
+        return "Text is converted into numerical vectors using techniques like Bag of Words or TF-IDF.";
+
+    if(msg.includes("tf-idf"))
+        return "TF-IDF gives importance to rare but meaningful words instead of common words.";
+
+    if(msg.includes("bag of words"))
+        return "Bag of Words represents text based on word frequency without considering grammar.";
+
+    /* ========== MACHINE LEARNING ========== */
+    if(msg.includes("algorithm"))
+        return "Naive Bayes is commonly used because it is fast and effective for text classification.";
+
+    if(msg.includes("naive bayes"))
+        return "Naive Bayes calculates the probability of an email being Spam or Ham based on word occurrence.";
+
+    if(msg.includes("training"))
+        return "The model is trained using labeled spam and ham email datasets.";
+
+    if(msg.includes("classification"))
+        return "Email classification assigns a label: Spam or Ham based on learned patterns.";
+
+    /* ========== KEYWORDS & PATTERNS ========== */
+    if(msg.includes("keyword"))
+        return "Spam keywords include: free, win, urgent, prize, click here, limited offer, money.";
+
+    if(msg.includes("pattern"))
+        return "Spam patterns include urgency, fake rewards, suspicious links, and unknown senders.";
+
+    /* ========== CONFIDENCE & ACCURACY ========== */
+    if(msg.includes("confidence"))
+        return "Confidence shows how sure the model is about its prediction.";
+
+    if(msg.includes("accuracy"))
+        return "Accuracy depends on dataset quality, preprocessing, and feature extraction.";
+
+    if(msg.includes("false positive"))
+        return "False positives occur when a genuine email is wrongly classified as spam.";
+
+    /* ========== INPUT LIMITS ========== */
+    if(msg.includes("limit") || msg.includes("words"))
+        return "You can safely enter up to 1000 words in the email body for prediction.";
+
+    /* ========== PROJECT FLOW ========== */
+    if(msg.includes("how it works"))
+        return "User enters email text → NLP preprocessing → feature extraction → ML prediction → result shown.";
+
+    if(msg.includes("workflow"))
+        return "Email → Clean Text → Vectorize → Model Predict → Spam or Ham.";
+
+    /* ========== SECURITY ========== */
+    if(msg.includes("phishing"))
+        return "Phishing emails trick users into sharing sensitive information using fake links.";
+
+    if(msg.includes("security"))
+        return "Spam detection improves cybersecurity by preventing phishing and fraud attacks.";
+
+    /* ========== LOGIN HELP ========== */
+    if(msg.includes("login"))
+        return "Login credentials:\nUsername: Batch2\nPassword: project";
+
+    /* ========== DEFAULT ========== */
+    return "You can ask about NLP, ML algorithms, spam keywords, preprocessing, accuracy, or project workflow 😊";
+}
+</script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spam Email Detection</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:"Times New Roman", serif;
+    min-height:100vh;
+    /* BACKGROUND IMAGE */
+    background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;       /* image covers full screen */
+    background-position: center;  /* center image */
+    background-repeat: no-repeat;
+    text-align:center;
+    color:white;
+}
+
+h1{
+    color:white;
+    margin-top:30px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.7);
+}
+
+/* ===== GLASS CARD ===== */
+.box{
+    width:75%;
+    margin:40px auto;
+    padding:35px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    color:white;
+}
+/* ===== DARK HEADING ===== */
+.dark-heading{
+    color:#000;          /* BLACK COLOR */
+    font-weight:bold;
+    text-shadow:none;
+    margin-bottom:15px;
+}
+/* ===== INPUTS ===== */
+input, textarea{
+    width:92%;
+    padding:14px;
+    margin:12px 0;
+    font-size:17px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    background: rgba(255,255,255,0.2);
+    color:white;
+}
+
+/* PLACEHOLDER COLOR */
+input::placeholder, textarea::placeholder{
+    color:#e0e0e0;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+    padding:14px 32px;
+    font-size:18px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    margin:10px;
+    font-weight:bold;
+    transition: 0.3s;
+}
+
+.predict-btn{
+    background:#4CAF50;
+    color:white;
+}
+
+.reset-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.home-btn{
+    background:#2196F3;
+    color:white;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== CHATBOT ===== */
+.chatbot{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+
+.chat-btn{
+    background:#673ab7;
+    color:white;
+    padding:16px;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 0 15px black;
+}
+
+.chat-box{
+    display:none;
+    width:260px;
+    background: rgba(0,0,0,0.85);
+    color:white;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    padding:15px;
+    margin-bottom:10px;
+    text-align:left;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🤖 Spam Checker 🛡️</h1>
+
+<div class="box">
+
+<form action="{{ url_for('predict') }}" method="POST">
+
+    <h3 class="dark-heading">📝 Enter Email Body 📨</h3>
+    <textarea name="message" rows="6" placeholder="Paste email content here..." required></textarea>
+
+    <br>
+    <input type="submit" class="btn predict-btn" value="🔍 Predict">
+
+</form>
+
+<button class="btn reset-btn" onclick="window.location.reload()">🔄 Try Another</button>
+<button class="btn home-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Home</button>
+
+</div>
+{% include 'chatbot.html' %}
+</body>
+</html>

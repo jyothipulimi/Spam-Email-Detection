@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Real-Time Spam mail  Detection</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            font-weight: bold;
+            text-align: center;
+            background-image: url('{{ url_for('static', filename='inp2.jpg') }}');
+            background-size: cover;
+            background-position: top center;
+            
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 8px black;
+        }
+        h2 {
+            font-size: 28px;
+            margin-top: 20px;
+        }
+        ol, ul {
+            text-align: left;
+            display: inline-block;
+            font-size: 20px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .btn {
+            font-family: "Times New Roman", serif;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 30px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .home-btn {
+            background-color: #ff9800;
+            color: white;
+        }
+        .logout-btn{
+            background:#f44336;
+            color:white;
+        }
+        .btn-container{
+            margin-top:30px;
+            display:flex;
+            justify-content:center;
+            gap:25px;   /* 👈 SPACE BETWEEN BUTTONS */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🛡️ SPAM EMAIL DETECTION USING NLP AND  MACHINE LEARNING⚡</h1>
+
+    <h2>📌 Introduction</h2>
+    <p>Spear phishing is a targeted cyber attack where attackers impersonate trusted entities to deceive individuals into divulging sensitive information. AI and Machine Learning enhance cybersecurity by analyzing email content, sender behavior, and embedded links to detect anomalies indicative of phishing attempts.</p>
+
+    <h2>🎯 Motto of Real-Time Spear Phishing Detection</h2>
+    <ol>
+        <li>🔍 Identify Malicious Emails – AI-driven analysis detects and prevents phishing attacks.</li>
+        <li>🛡️ Enhance Cybersecurity – Protects individuals and organizations from fraudulent emails.</li>
+        <li>🚀 Automate Threat Detection – Reduces human intervention with ML models.</li>
+        <li>📊 Improve Accuracy – Minimizes false positives and negatives.</li>
+        <li>⚡ Real-Time Monitoring – Provides instant alerts and risk assessments.</li>
+    </ol>
+
+    <h2>⭐ Advantages of AI-Based Spear Phishing Detection</h2>
+    <ul>
+        <li>🚫 Prevents Data Breaches – Early detection safeguards sensitive data.</li>
+        <li>📉 Reduces Financial Losses – Prevents fraudulent transactions.</li>
+        <li>🔄 Continuous Learning – AI adapts to evolving phishing techniques.</li>
+        <li>💡 Minimal Human Intervention – Automates email analysis.</li>
+        <li>📌 Customizable Security Policies – Fine-tunes detection systems.</li>
+    </ul>
+
+    <h2>📈 Applications of AI in Spear Phishing Detection</h2>
+    <ul>
+        <li>🏢 Enterprise Security – Protects corporate email systems.</li>
+        <li>🏛️ Government Agencies – Ensures secure communication.</li>
+        <li>🏦 Financial Institutions – Prevents fraud in banking.</li>
+        <li>🌐 Social Media & Online Services – Detects phishing links.</li>
+        <li>📬 Email Service Providers – Enhances spam filtering.</li>
+    </ul>
+
+    <h2>🛠️ Uses of AI in Spear Phishing Mail Detection</h2>
+    <ul>
+        <li>📧 Email Content Analysis – Differentiates phishing from real emails.</li>
+        <li>🔗 Link & Attachment Scanning – Detects harmful URLs and files.</li>
+        <li>📊 Behavioral Analysis – Identifies unusual sender activities.</li>
+        <li>🛑 Blacklist & Whitelist Filtering – Improves filtering accuracy.</li>
+        <li>⚡ Real-Time Threat Intelligence – Provides instant protection.</li>
+    </ul>
+
+    <h2>📊 Types of Spear Phishing Attacks</h2>
+    <ul>
+        <li>🔑 Credential Theft Emails – Fake emails to steal login details.</li>
+        <li>💰 Financial Fraud Emails – Fraudulent transactions.</li>
+        <li>🎭 Impersonation Attacks – Attackers pretend to be trusted people.</li>
+        <li>🔗 Malicious Link Attacks – Redirects users to fake websites.</li>
+        <li>📎 Malicious Attachment Attacks – Installs malware via attachments.</li>
+    </ul>
+
+    <h2>⚠️ Problems in AI-Based Spear Phishing Detection</h2>
+    <ul>
+        <li>🤖 Adversarial Attacks – Attackers evolve techniques to bypass AI.</li>
+        <li>📌 High False Positives – Some real emails may be flagged as phishing.</li>
+        <li>🔍 Need for Large Datasets – AI requires extensive data for training.</li>
+        <li>📈 Computational Overhead – Real-time detection needs processing power.</li>
+        <li>🔄 Continuous Model Updates – AI models must be frequently updated.</li>
+    </ul>
+
+    <h2>✅ Conclusion</h2>
+    <p>AI-driven real-time spear phishing detection is a game-changer in cybersecurity. These systems efficiently combat targeted phishing attacks by leveraging intelligent analysis. As threats evolve, advancements in AI will enhance detection, making email communication safer.</p>
+    <div class="btn-container">
+        <button class="btn home-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Return to Home</button>
+        <button class="btn logout-btn" onclick="location.href='{{ url_for('logout') }}'">🚪 Logout</button>
+    </div>
+{% include 'chatbot.html' %}
+</body>
+</html>

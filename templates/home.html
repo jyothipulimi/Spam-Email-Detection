@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            font-weight: bold;
+            text-align: center;
+            background-image: url('{{ url_for('static', filename='inp1.gif') }}');
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 50px;
+            text-shadow: 2px 2px 8px black;
+            color: rgb(32, 1, 53);
+        }
+        .button-container {
+            margin-top: 50px;
+        }
+        .btn {
+            font-family: "Times New Roman", serif;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 30px;
+            margin: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn:hover { transform: scale(1.1); }
+        .about-btn { background-color: #ff9800; color: white; }
+        .detect-btn { background-color: #4CAF50; color: white; }
+        .logout-btn { background-color: #f44336; color: white; }
+        .logout-btn:hover { background-color: #c62828; }
+    </style>
+</head>
+<body>
+
+<h1>🛡️ SPAM EMAIL DETECTION USING NLP AND MACHINE LEARNING ⚡</h1>
+
+<div class="button-container">
+    <button class="btn about-btn" onclick="location.href='{{ url_for('about') }}'">📖 About Email Spam</button>
+    <button class="btn detect-btn" onclick="location.href='{{ url_for('detect') }}'">🕵️‍♂️ Email Spam Detection</button>
+    <button class="btn logout-btn" onclick="location.href='{{ url_for('logout') }}'">🚪 Logout</button>
+</div>
+{% include 'chatbot.html' %}
+
+</body>
+</html>

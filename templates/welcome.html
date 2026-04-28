@@ -1,0 +1,109 @@
+<!-- welcome.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 50%, #ffe0b2 50%);
+            color: #333;
+        }
+
+        .header-box {
+            margin-top: 60px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            border-radius: 20px;
+            width: 85%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-box img {
+            width: 130px;
+            height: 130px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a237e;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        h4 {
+            margin-top: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #d84315;
+        }
+
+        .gold-line {
+            height: 8px;
+            background: #ffb74d;
+            width: 60%;
+            margin: 15px auto;
+            border-radius: 4px;
+        }
+
+        .btn-box {
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            background: linear-gradient(45deg, #00796b, #004d40);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 2px 6px 15px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #004d40, #00796b);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <img src="{{ url_for('static', filename='CollegeLogo.jpg') }}" alt="College Logo">
+        <h1>ST. ANN'S COLLEGE OF ENGINEERING & TECHNOLOGY</h1>
+        <h3>(An Autonomous Institution)</h3>
+        <h3>Bypass Road, Nayunipalli, Chirala, Bapatla District – 523187</h3>
+        <h4>Department Of Artificial Intelligence and Machine Learning</h4>
+        <div class="gold-line"></div>
+    </div>
+
+    <div class="btn-box">
+        <!-- ✅ This button goes to Login page -->
+        <a href="{{ url_for('login') }}" class="btn">Enter Your Project</a>
+    </div>
+
+</body>
+</html>
