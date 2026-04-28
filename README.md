@@ -1,4 +1,4 @@
-# 📧 Spam Email Detection & Classification
+# 📧 Spam Email Detection & Classification using NLP and ML Approaches
 
 ## 📌 Description
 
