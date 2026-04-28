@@ -1,11 +1,40 @@
-**SPAM EMAIL DETECTION AND CLASSIFICATION USING NATURAL LANGUAGE PROCESSING AND MACHINE LEARNING APPROACHES**
+# 📧 Spam Email Detection & Classification
 
-• Developed a spam email detection system using Natural Language Processing and Machine Learning techniques.
-• Performed data preprocessing by cleaning email text, removing stop words, punctuation, and applying stemming or lemmatization.
-• Converted text data into numerical features using TF-IDF and CountVectorizer for better model understanding.
-• Implemented multiple machine learning algorithms such as Naive Bayes, Support Vector Machine (SVM), and Logistic Regression for spam classification.
-• Built an LSTM deep learning model to capture sequential patterns in email text and improve spam detection.
-• Evaluated model performance using Accuracy, Precision, Recall, and F1-Score, achieving around 98% accuracy.
-• Visualized results and model performance for better analysis.
+## 📌 Description
 
-**Technologies Used:** Python, Scikit-learn, NLTK, TensorFlow/Keras, Pandas, NumPy.
+This project detects whether an email is spam or not using Natural Language Processing (NLP) and Machine Learning techniques.
+
+## 🚀 Features
+
+* Text preprocessing (cleaning, stopword removal, stemming)
+* Feature extraction using TF-IDF and CountVectorizer
+* ML models: Naive Bayes, SVM, Logistic Regression
+* Deep learning model using LSTM
+* Achieves ~98% accuracy
+
+## 🛠️ Tech Stack
+
+* Python
+* Scikit-learn
+* NLTK
+* TensorFlow / Keras
+* Pandas, NumPy
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/your-username/spam-email-detection.git
+cd spam-email-detection
+pip install -r requirements.txt
+```
+
+## ▶️ Usage
+
+```bash
+python main.py
+```
+
+## 📊 Results
+
+* Accuracy: ~98%
+* Evaluated using Precision, Recall, F1-score
